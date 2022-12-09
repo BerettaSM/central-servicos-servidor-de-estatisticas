@@ -10,10 +10,10 @@ data_manager = DataManager()
 data_analyzer = DataAnalyser()
 
 
-@statistics.route('/basic-analysis/<int:days_ago>', methods=('GET',))
-def home(days_ago):
+@statistics.route('/basic-analysis/<int:days_ago>/<string:graph_type>', methods=('GET',))
+def home(days_ago, graph_type):
     ticket_data = data_manager.get_data()
-    analyzed_ticket_data = data_analyzer.get_basic_analysis(ticket_data, days_ago)
+    analyzed_ticket_data = data_analyzer.get_basic_analysis(ticket_data, days_ago, graph_type)
     return jsonify(analyzed_ticket_data)
 
 
